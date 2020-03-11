@@ -39,6 +39,10 @@
     <div id="negociacoesView"></div>
 
     <script src="lib/jquery.min.js"></script>
-    <script src="js/apps.js"></script>
+    <script src="lib/system.js"></script>
+    <script>
+        System.defaultJSExtensions = true;
+        System.import("js/apps.js").cath(erro => console.error(erro));
+    </script>
 </body>
 </html>
