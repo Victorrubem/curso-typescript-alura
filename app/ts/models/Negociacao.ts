@@ -1,4 +1,4 @@
-class  Negociacao {
+export class  Negociacao {
 /*
 No typeScript, não é necessário, 
 escrever as propriedades que serão atribuidas no construror

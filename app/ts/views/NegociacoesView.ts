@@ -1,41 +1,43 @@
-namespace Views {
-    export class NegociacoesView extends View<Negociacoes> {
+import { View } from './View';
+import { Negociacoes } from '../models/Negociacoes';
 
-        template(negociacoes:Negociacoes):string {
-            return `
-                    <table class="table table-hover table-bordered">
-                    <thead>
+export class NegociacoesView extends View<Negociacoes> {
+
+    template(negociacoes:Negociacoes):string {
+        return `
+                <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>DATA</th>
+                        <th>QUANTIDADE</th>
+                        <th>VALOR</th>
+                        <th>VOLUME</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    ${negociacoes.obtemArray().map(negociacao => 
+                        `
                         <tr>
-                            <th>DATA</th>
-                            <th>QUANTIDADE</th>
-                            <th>VALOR</th>
-                            <th>VOLUME</th>
+                            <td>${negociacao.dataFormatada()}</td>
+                            <td>${negociacao.quantidade}</td>
+                            <td>${negociacao.valor}</td>
+                            <td>${negociacao.volume}</td>
                         </tr>
-                    </thead>
+                        `
+                    ).join('')}
 
-                    <tbody>
+                </tbody>
 
-                        ${negociacoes.obtemArray().map(negociacao => 
-                            `
-                            <tr>
-                                <td>${negociacao.dataFormatada()}</td>
-                                <td>${negociacao.quantidade}</td>
-                                <td>${negociacao.valor}</td>
-                                <td>${negociacao.volume}</td>
-                            </tr>
-                            `
-                        ).join('')}
-
-                    </tbody>
-
-                    <tfoot>
-                    </tfoot>
-                </table>   
-                `;
-        }
-
+                <tfoot>
+                </tfoot>
+            </table>   
+            `;
     }
+
 }
+
 
 
 
