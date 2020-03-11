@@ -1,20 +1,14 @@
-System.register(["../views/MensagemView", "../views/NegociacoesView", "../models/Negociacao", "../models/Negociacoes"], function (exports_1, context_1) {
+System.register(["../views/IndexView", "../models/IndexModels"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var MensagemView_1, NegociacoesView_1, Negociacao_1, Negociacoes_1, NegociacaoController;
+    var IndexView_1, IndexModels_1, NegociacaoController;
     return {
         setters: [
-            function (MensagemView_1_1) {
-                MensagemView_1 = MensagemView_1_1;
+            function (IndexView_1_1) {
+                IndexView_1 = IndexView_1_1;
             },
-            function (NegociacoesView_1_1) {
-                NegociacoesView_1 = NegociacoesView_1_1;
-            },
-            function (Negociacao_1_1) {
-                Negociacao_1 = Negociacao_1_1;
-            },
-            function (Negociacoes_1_1) {
-                Negociacoes_1 = Negociacoes_1_1;
+            function (IndexModels_1_1) {
+                IndexModels_1 = IndexModels_1_1;
             }
         ],
         execute: function () {
@@ -23,14 +17,14 @@ System.register(["../views/MensagemView", "../views/NegociacoesView", "../models
                     this._inputData = $("#data");
                     this._inputQuantidade = $("#quantidade");
                     this._inputValor = $("#valor");
-                    this._negociacoes = new Negociacoes_1.Negociacoes();
-                    this._negociacoesView = new NegociacoesView_1.NegociacoesView('#negociacoesView');
-                    this._mensagem = new MensagemView_1.MensagemView('#mensagemView');
+                    this._negociacoes = new IndexModels_1.Negociacoes();
+                    this._negociacoesView = new IndexView_1.NegociacoesView('#negociacoesView');
+                    this._mensagem = new IndexView_1.MensagemView('#mensagemView');
                     this._negociacoesView.update(this._negociacoes);
                 }
                 adiciona(event) {
                     event.preventDefault();
-                    const negociacao = new Negociacao_1.Negociacao(new Date(this._inputData.val().replace(/-/g, ",")), parseInt(this._inputQuantidade.val()), parseFloat(this._inputValor.val()));
+                    const negociacao = new IndexModels_1.Negociacao(new Date(this._inputData.val().replace(/-/g, ",")), parseInt(this._inputQuantidade.val()), parseFloat(this._inputValor.val()));
                     this._negociacoes.adiciona(negociacao);
                     this._negociacoesView.update(this._negociacoes);
                     this._mensagem.update(' Negociações cadastrada com sucesso! ');

@@ -1,7 +1,5 @@
-import { MensagemView } from '../views/MensagemView';
-import { NegociacoesView } from '../views/NegociacoesView';
-import { Negociacao } from '../models/Negociacao';
-import { Negociacoes } from '../models/Negociacoes';
+import { MensagemView,NegociacoesView } from '../views/IndexView';
+import { Negociacao,Negociacoes } from '../models/IndexModels';
 
 
 
