@@ -1,3 +1,7 @@
+
+import NegociacoesView = Views.NegociacoesView;
+import MensagemView = Views.NegociacoesView;
+
 class NegociacaoController {
     private _inputData : JQuery;
     private _inputQuantidade : JQuery;
@@ -16,7 +20,6 @@ class NegociacaoController {
 		Aí sim conseguimos obter o atributo .value da propriedade this._inputData, já que é um método do HtmlInputElement
 
 */
-
 
     constructor(){
         this._inputData = $("#data");
