@@ -10,4 +10,8 @@ export class  Negociacao {
     dataFormatada():string{
         return `${this.data.getDate()}/${this.data.getMonth()}/${this.data.getFullYear()}`;
     }
+
+    get volume(){
+        return this.quantidade * this.valor;
+    }
 }
