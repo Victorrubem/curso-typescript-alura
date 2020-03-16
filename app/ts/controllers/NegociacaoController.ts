@@ -47,9 +47,14 @@ export class NegociacaoController {
             parseFloat(this._inputValor.val())
             );
 
-            this._negociacoes.adiciona(negociacao);
-            this._negociacoesView.update(this._negociacoes);
-            this._mensagem.update(' NegociaÃ§Ãµes cadastrada com sucesso! ');
+            if(negociacao.isDiaUtil()){
+                this._negociacoes.adiciona(negociacao);
+                this._negociacoesView.update(this._negociacoes);
+                this._mensagem.update(' NegociaÃ§Ãµes cadastrada com sucesso! ');
+            }else{
+                this._mensagem.update(' Somente negociações em dias úteis por favor!  ');
+            }
+
 
             this._negociacoes.obtemArray().forEach(negociacao =>{
                 console.log(negociacao.data);
@@ -57,6 +62,29 @@ export class NegociacaoController {
                 console.log(negociacao.valor);
                 console.log(negociacao.volume);
             });
+    }
+
+    importarDados(): void {
+
+        function isResponseOk(res:  Response){
+            if(res.ok){
+                return res;
+            }else{
+                throw new Error(res.statusText);
+            }
+        }
+
+        fetch("http://localhost:8080/dados")
+            .then(response => isResponseOk(response) )
+            .then(response => response.json())
+            .then((responseJson: any[]) => {
+                responseJson.map(
+                    negociacaoJson => new Negociacao(new Date(),negociacaoJson.vezes, negociacaoJson.montante)
+                )
+                .forEach(negociacao => this._negociacoes.adiciona(negociacao));
+                this._negociacoesView.update(this._negociacoes);
+            })
+            .catch(err => console.log(err.message));
     }
 
 }

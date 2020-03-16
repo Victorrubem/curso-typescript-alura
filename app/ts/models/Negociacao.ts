@@ -14,4 +14,18 @@ export class  Negociacao {
     get volume(){
         return this.quantidade * this.valor;
     }
+
+    public isDiaUtil(): boolean{
+        return new Date().getDay() != DiaDaSemana.Domingo && new Date().getDay() != DiaDaSemana.Sabado;  
+    }
+}
+
+enum DiaDaSemana{
+    Domingo = 0,
+    Segunda = 1,
+    Terca   = 2,
+    Quarta  = 3, 
+    Quita   = 4, 
+    Sexta   = 5, 
+    Sabado  = 6
 }
