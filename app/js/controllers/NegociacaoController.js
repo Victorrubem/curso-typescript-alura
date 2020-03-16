@@ -1,7 +1,13 @@
-System.register(["../views/IndexView", "../models/IndexModels"], function (exports_1, context_1) {
+System.register(["../views/IndexView", "../models/IndexModels", "../helpers/decorators/Index"], function (exports_1, context_1) {
     "use strict";
+    var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+        else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        return c > 3 && r && Object.defineProperty(target, key, r), r;
+    };
     var __moduleName = context_1 && context_1.id;
-    var IndexView_1, IndexModels_1, NegociacaoController;
+    var IndexView_1, IndexModels_1, Index_1, NegociacaoController;
     return {
         setters: [
             function (IndexView_1_1) {
@@ -9,6 +15,9 @@ System.register(["../views/IndexView", "../models/IndexModels"], function (expor
             },
             function (IndexModels_1_1) {
                 IndexModels_1 = IndexModels_1_1;
+            },
+            function (Index_1_1) {
+                Index_1 = Index_1_1;
             }
         ],
         execute: function () {
@@ -22,8 +31,7 @@ System.register(["../views/IndexView", "../models/IndexModels"], function (expor
                     this._mensagem = new IndexView_1.MensagemView('#mensagemView');
                     this._negociacoesView.update(this._negociacoes);
                 }
-                adiciona(event) {
-                    event.preventDefault();
+                adiciona() {
                     const negociacao = new IndexModels_1.Negociacao(new Date(this._inputData.val().replace(/-/g, ",")), parseInt(this._inputQuantidade.val()), parseFloat(this._inputValor.val()));
                     if (negociacao.isDiaUtil()) {
                         this._negociacoes.adiciona(negociacao);
@@ -60,6 +68,12 @@ System.register(["../views/IndexView", "../models/IndexModels"], function (expor
                         .catch(err => console.log(err.message));
                 }
             };
+            __decorate([
+                Index_1.throttle()
+            ], NegociacaoController.prototype, "adiciona", null);
+            __decorate([
+                Index_1.throttle()
+            ], NegociacaoController.prototype, "importarDados", null);
             exports_1("NegociacaoController", NegociacaoController);
         }
     };

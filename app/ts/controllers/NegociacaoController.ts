@@ -1,5 +1,6 @@
 import { MensagemView,NegociacoesView } from '../views/IndexView';
 import { Negociacao,Negociacoes,InterfaceNegociacaoParcialJson } from '../models/IndexModels';
+import { throttle } from '../helpers/decorators/Index';
 
 
 
@@ -32,10 +33,8 @@ export class NegociacaoController {
         this._negociacoesView.update(this._negociacoes);
     }
 
-    adiciona(event: Event) {
-
-        event.preventDefault();
-
+    @throttle()
+    adiciona() {
         /*
         Para podermos enviar os dados para o construtor que espera as propriedades tipadas
         devemos realizar o parse desses dados, e como o new Date() espera uma String no formato dd,mm,yyyy 
@@ -64,6 +63,7 @@ export class NegociacaoController {
             });
     }
 
+    @throttle()
     importarDados(): void {
 
         function isResponseOk(res:  Response){
