@@ -1,5 +1,5 @@
 import { MensagemView,NegociacoesView } from '../views/IndexView';
-import { Negociacao,Negociacoes } from '../models/IndexModels';
+import { Negociacao,Negociacoes,InterfaceNegociacaoParcialJson } from '../models/IndexModels';
 
 
 
@@ -77,7 +77,7 @@ export class NegociacaoController {
         fetch("http://localhost:8080/dados")
             .then(response => isResponseOk(response) )
             .then(response => response.json())
-            .then((responseJson: any[]) => {
+            .then((responseJson: InterfaceNegociacaoParcialJson[]) => {
                 responseJson.map(
                     negociacaoJson => new Negociacao(new Date(),negociacaoJson.vezes, negociacaoJson.montante)
                 )
