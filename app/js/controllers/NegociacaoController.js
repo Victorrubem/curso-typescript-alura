@@ -1,4 +1,4 @@
-System.register(["../views/IndexView", "../models/IndexModels", "../helpers/decorators/Index"], function (exports_1, context_1) {
+System.register(["../views/IndexView", "../models/IndexModels", "../helpers/decorators/Index", "../services/Index"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -7,7 +7,7 @@ System.register(["../views/IndexView", "../models/IndexModels", "../helpers/deco
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
     var __moduleName = context_1 && context_1.id;
-    var IndexView_1, IndexModels_1, Index_1, NegociacaoController;
+    var IndexView_1, IndexModels_1, Index_1, Index_2, NegociacaoController;
     return {
         setters: [
             function (IndexView_1_1) {
@@ -18,6 +18,9 @@ System.register(["../views/IndexView", "../models/IndexModels", "../helpers/deco
             },
             function (Index_1_1) {
                 Index_1 = Index_1_1;
+            },
+            function (Index_2_1) {
+                Index_2 = Index_2_1;
             }
         ],
         execute: function () {
@@ -30,6 +33,7 @@ System.register(["../views/IndexView", "../models/IndexModels", "../helpers/deco
                     this._negociacoesView = new IndexView_1.NegociacoesView('#negociacoesView');
                     this._mensagem = new IndexView_1.MensagemView('#mensagemView');
                     this._negociacoesView.update(this._negociacoes);
+                    this._service = new Index_2.NegociacoesServices();
                 }
                 adiciona() {
                     const negociacao = new IndexModels_1.Negociacao(new Date(this._inputData.val().replace(/-/g, ",")), parseInt(this._inputQuantidade.val()), parseFloat(this._inputValor.val()));
